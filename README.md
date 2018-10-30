@@ -1,2 +1,2 @@
 # text-a
-Fast text recorder
+Online quick text recorder

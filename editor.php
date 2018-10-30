@@ -13,13 +13,13 @@
 <textarea type="text"  name="content" style="font-family: Arial;font-size: 12pt;" 
 >
 <?php
-echo $newcontent;
+echo $clear;
 ?>
 </textarea>
 <CENTER>
 <input type="password" name="setkey" required>
-<input type="submit" name="save_button" value="Kaydet ve Çık">
+<input type="submit" name="save_button" value="Save and Quit">
 </form>
-<button type="button" onclick="javascript:location.href='/'">Çık</button>
+<button type="button" onclick="javascript:location.href='/'">Quit</button>
 </body>
 </html>
