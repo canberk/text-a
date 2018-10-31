@@ -6,7 +6,7 @@ $set_key = $_POST['setkey'];
 if (empty($key)) {
     include 'form.php';
 } else {
-    $key = refreshKey($key);
+    $key = refresh_key($key);
 
     $file = fopen('file.txt', 'r+');
     $crypted = fread($file, filesize('file.txt'));
@@ -18,7 +18,7 @@ if (empty($key)) {
 
 if (isset($_POST['save_button'])) {
     $content = $_POST["content"];
-    $set_key = refreshKey($set_key);
+    $set_key = refresh_key($set_key);
 
     date_default_timezone_set('Europe/Istanbul');
     $file = fopen('file.txt', 'w');
@@ -33,13 +33,14 @@ if (isset($_POST['save_button'])) {
     fclose($recordfile);
 }
 
-function refreshKey($key)
+function refresh_key($key)
 {
     $newKey = hash('md5', $key);
     return $newKey;
 }
 
-function encrypt($clear){
+function encrypt($clear)
+{
     $counter = 0;
 
     for ($i = 1; $i <= strlen($clear); $i++) {
@@ -58,7 +59,8 @@ function encrypt($clear){
     return $crypted;
 }
 
-function decrypt($crypted){
+function decrypt($crypted)
+{
     $counter = 0;
 
     for ($i = 1; $i <= strlen($crypted)/3; $i++) {
