@@ -10,11 +10,8 @@
 <body>
 <div class="duvar">
 <form method="post" action="index.php">
-<textarea type="text"  name="content" style="font-family: Arial;font-size: 12pt;" 
->
-<?php
-echo $clear;
-?>
+<textarea type="text"  name="content" style="font-family: Arial;font-size: 12pt;">
+<?= $clear; ?>
 </textarea>
 <CENTER>
 <input type="password" name="setkey" required>

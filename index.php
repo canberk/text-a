@@ -1,10 +1,10 @@
 <?php
 
-$key = $_POST["key"];
-$setkey = $_POST["setkey"];
+$key = $_POST['key'];
+$set_key = $_POST['setkey'];
 
 if (empty($key)) {
-    include "form.php";
+    include 'form.php';
 } else {
     $key = refreshKey($key);
 
@@ -13,12 +13,12 @@ if (empty($key)) {
     
     $clear = decrypt($crypted);
 
-    include "editor.php";
+    include 'editor.php';
 }
 
 if (isset($_POST['save_button'])) {
     $content = $_POST["content"];
-    $setkey = refreshKey($setkey);
+    $set_key = refreshKey($set_key);
 
     date_default_timezone_set('Europe/Istanbul');
     $file = fopen('file.txt', 'w');
@@ -41,9 +41,10 @@ function refreshKey($key)
 
 function encrypt($clear){
     $counter = 0;
+
     for ($i = 1; $i <= strlen($clear); $i++) {
         $letter = substr($clear, $counter, 1);
-        $keyletter = substr($setkey, $counter%32, 1);
+        $keyletter = substr($set_key, $counter%32, 1);
         $letter = ord($letter);
         $keyletter = ord($keyletter);
         $newletter = $letter + $keyletter;
@@ -53,11 +54,13 @@ function encrypt($clear){
         $crypted = $crypted .  $newletter;
         $counter++;
     }
+    
     return $crypted;
 }
 
 function decrypt($crypted){
     $counter = 0;
+
     for ($i = 1; $i <= strlen($crypted)/3; $i++) {
         $letter = substr($crypted, $counter*3, 3);
         $keyletter = substr($key, $counter%32, 1);
@@ -67,5 +70,8 @@ function decrypt($crypted){
         $clear = $clear .  $newletter;
         $counter++;
     }
+
     return $clear;
 }
+
+//EOF
